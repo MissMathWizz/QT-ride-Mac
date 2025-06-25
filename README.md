@@ -1,7 +1,82 @@
 [![Python CI](https://github.com/ramilevi1/QT-ride/actions/workflows/python-app.yml/badge.svg)](https://github.com/ramilevi1/QT-ride/actions/workflows/python-app.yml)
 
 test 2
-# QT-ride
+# QT-ride Mac Version (Testing)
+
+A microservices-based ride-sharing application specifically adapted and tested for macOS. This version is currently under development and testing.
+
+⚠️ **Note: This is a testing version, not ready for production use.**
+
+## Services
+
+- **Auth Service** (Port 5001): Handles user authentication
+- **Search Service** (Port 5002): Manages ride searches
+- **Offer Service** (Port 5004): Handles ride offers
+- **User Profile Service**: Manages user profiles
+
+## Mac-Specific Setup
+
+1. Create a Python virtual environment (requires Python 3.11+):
+```bash
+python3.11 -m venv venv
+source venv/bin/activate
+```
+
+2. Install dependencies for each service:
+```bash
+cd auth_service
+pip install Flask==3.0.2 Flask-SQLAlchemy==3.1.1 Flask-Migrate==4.0.7 PyJWT==2.8.0
+```
+
+3. Run the services:
+```bash
+# Auth Service
+cd auth_service
+python3 app.py
+
+# Search Service
+cd ../search_service
+python3 app.py
+
+# Offer Service
+cd ../offer_service
+python3 app.py
+```
+
+## API Endpoints
+
+### Auth Service (localhost:5001)
+- POST /signup - Create new user
+- POST /signin - User login
+- POST /signout - User logout
+
+### Search Service (localhost:5002)
+- GET /search - Search for rides
+
+### Offer Service (localhost:5004)
+- POST /offer - Create ride offer
+
+## Requirements
+- macOS
+- Python 3.11+
+- Flask
+- SQLAlchemy
+- PyJWT
+
+## Testing Status
+- ✅ Basic setup tested on macOS
+- ✅ Authentication service functional
+- ⚠️ Search service under testing
+- ⚠️ Offer service under testing
+- 🔄 Integration testing in progress
+
+## Known Issues
+- Some services may require additional configuration for macOS
+- Database paths may need adjustment based on your macOS setup
+- Virtual environment setup might vary based on your Python installation
+
+Please report any issues or bugs you encounter while testing!
+
 Carpooliong. features included:
 1. sign up and log-in/log-out (authentication)
 2. HTTPS support (currently with self sign certificate)
