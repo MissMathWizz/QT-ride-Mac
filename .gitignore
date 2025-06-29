@@ -27,6 +27,10 @@ wheels/
 # Virtual Environment
 venv/
 ENV/
+venv_py311/
+*.pyc
+__pycache__/
+.DS_Store
 
 # IDE
 .idea/

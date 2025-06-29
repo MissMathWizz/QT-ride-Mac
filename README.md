@@ -204,11 +204,15 @@ A ride-sharing application built with Flask microservices architecture.
 
 ## Prerequisites
 
-- Python 3.11 or higher
+- Python 3.11 (recommended, tested version)
 - macOS (tested on macOS 24.5.0)
 - Terminal access
 
-## Initial Setup
+## Important Setup Notes
+
+⚠️ **Python Version Compatibility**: This project requires Python 3.11 for optimal compatibility with all dependencies. Python 3.13 is not currently supported due to package compatibility issues.
+
+### Installation Steps
 
 1. Clone the repository:
 ```bash
@@ -216,79 +220,47 @@ git clone https://github.com/MissMathWizz/QT-ride-Mac.git
 cd QT-ride-Mac
 ```
 
-2. Create and activate a virtual environment:
+2. Ensure you have Python 3.11 installed:
 ```bash
-python3 -m venv venv
-source venv/bin/activate
+python3.11 --version
+```
+If Python 3.11 is not installed, you can install it using Homebrew:
+```bash
+brew install python@3.11
 ```
 
-3. Install dependencies:
+3. Create and activate a virtual environment with Python 3.11:
 ```bash
+python3.11 -m venv venv_py311
+source venv_py311/bin/activate
+```
+
+4. Upgrade pip and install core dependencies:
+```bash
+python -m pip install --upgrade pip setuptools wheel
 pip install -r requirements.txt
 ```
 
-## Running the Application
-
-The application consists of multiple microservices that need to run simultaneously. You'll need to open separate terminal windows/tabs for each service.
-
-### Terminal 1: Authentication Service
+5. Install the spaCy English language model:
 ```bash
-cd auth_service
-source ../venv/bin/activate
-python3 app.py
+python -m spacy download en_core_web_sm
 ```
-This service will run on http://127.0.0.1:5001
 
-### Terminal 2: Search Service
-```bash
-cd search_service
-source ../venv/bin/activate
-python3 app.py
+### Known Installation Issues
+
+1. If you encounter issues with spaCy or its dependencies:
+   - Make sure you're using Python 3.11
+   - The requirements.txt includes numpy==1.24.3 which is specifically chosen for compatibility
+   - If you still have issues, try installing the core dependencies first:
+     ```bash
+     pip install -r requirements_core.txt
+     ```
+
+2. For M1/M2 Mac users:
+   - The project has been tested and configured for Apple Silicon
+   - All binary dependencies are compatible with arm64 architecture
+
+## Initial Setup
+
+1. Clone the repository:
 ```
-This service will run on http://127.0.0.1:5003
-
-### Terminal 3: Offer Service
-```bash
-cd offer_service
-source ../venv/bin/activate
-python3 app.py
-```
-This service will run on http://127.0.0.1:5004
-
-### Terminal 4: Main Application
-```bash
-# Make sure you're in the project root directory
-source venv/bin/activate
-python3 app.py
-```
-The main application will run on http://127.0.0.1:5002
-
-## Service Endpoints
-
-- Main Application: http://127.0.0.1:5002
-- Authentication Service: http://127.0.0.1:5001
-- Search Service: http://127.0.0.1:5003
-- Offer Service: http://127.0.0.1:5004
-
-## Important Notes
-
-1. Make sure to run the services in separate terminal windows/tabs
-2. Keep all services running simultaneously for the application to work properly
-3. The virtual environment needs to be activated in each terminal
-4. The services use a shared SQLite database located in the shared_instance directory
-
-## Troubleshooting
-
-If you encounter any issues:
-
-1. Ensure all required ports (5001-5004) are available
-2. Check if the virtual environment is activated (you should see `(venv)` in your terminal prompt)
-3. Verify that all dependencies are installed correctly
-4. Make sure the shared_instance directory exists and has proper permissions
-
-## Development
-
-- The application uses SQLite for data storage
-- Each service operates independently with its own database connection
-- JWT is used for authentication
-- The frontend is served by the main application
