@@ -14,6 +14,44 @@ A microservices-based ride-sharing application specifically adapted and tested f
 - **Offer Service** (Port 5004): Handles ride offers
 - **User Profile Service**: Manages user profiles
 
+## Important Setup Notes
+
+⚠️ **Python Version Compatibility**: This project requires Python 3.11 for optimal compatibility with all dependencies. Python 3.13 is not currently supported due to package compatibility issues.
+
+### Installation Steps
+
+1. Clone the repository:
+```bash
+git clone https://github.com/MissMathWizz/QT-ride-Mac.git
+cd QT-ride-Mac
+```
+
+2. Ensure you have Python 3.11 installed:
+```bash
+python3.11 --version
+```
+If Python 3.11 is not installed, you can install it using Homebrew:
+```bash
+brew install python@3.11
+```
+
+3. Create and activate a virtual environment with Python 3.11:
+```bash
+python3.11 -m venv venv_py311
+source venv_py311/bin/activate
+```
+
+4. Upgrade pip and install core dependencies:
+```bash
+python -m pip install --upgrade pip setuptools wheel
+pip install -r requirements.txt
+```
+
+5. Install the spaCy English language model:
+```bash
+python -m spacy download en_core_web_sm
+```
+
 ## Mac-Specific Setup
 1. Clone the repository:
 ```bash
@@ -38,14 +76,18 @@ The application consists of multiple microservices that need to run simultaneous
 
 ### Terminal 1: Authentication Service
 ```bash
+cd QT-ride-Mac
 cd auth_service
 source ../venv/bin/activate
+change line 12 in app.py " app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///instance/auth_service.db' " to "app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/yw/QT-ride-Mac-test2/QT-ride-Mac/auth_service/instance/auth_service.db'"
+
 python3 app.py
 ```
 This service will run on http://127.0.0.1:5001
 
 ### Terminal 2: Search Service
 ```bash
+cd QT-ride-Mac
 cd search_service
 source ../venv/bin/activate
 python3 app.py
@@ -54,6 +96,7 @@ This service will run on http://127.0.0.1:5003
 
 ### Terminal 3: Offer Service
 ```bash
+cd QT-ride-Mac
 cd offer_service
 source ../venv/bin/activate
 python3 app.py
@@ -61,6 +104,7 @@ python3 app.py
 
 ### Terminal 4: User Profile
 ```bash
+cd QT-ride-Mac
 cd user_profile
 source ../venv/bin/activate
 python3 app.py
@@ -70,6 +114,7 @@ This service will run on http://127.0.0.1:5004
 ### Terminal 5: Main Application
 ```bash
 # Make sure you're in the project root directory
+cd QT-ride-Mac
 source venv/bin/activate
 python3 app.py
 ```
@@ -208,43 +253,7 @@ A ride-sharing application built with Flask microservices architecture.
 - macOS (tested on macOS 24.5.0)
 - Terminal access
 
-## Important Setup Notes
 
-⚠️ **Python Version Compatibility**: This project requires Python 3.11 for optimal compatibility with all dependencies. Python 3.13 is not currently supported due to package compatibility issues.
-
-### Installation Steps
-
-1. Clone the repository:
-```bash
-git clone https://github.com/MissMathWizz/QT-ride-Mac.git
-cd QT-ride-Mac
-```
-
-2. Ensure you have Python 3.11 installed:
-```bash
-python3.11 --version
-```
-If Python 3.11 is not installed, you can install it using Homebrew:
-```bash
-brew install python@3.11
-```
-
-3. Create and activate a virtual environment with Python 3.11:
-```bash
-python3.11 -m venv venv_py311
-source venv_py311/bin/activate
-```
-
-4. Upgrade pip and install core dependencies:
-```bash
-python -m pip install --upgrade pip setuptools wheel
-pip install -r requirements.txt
-```
-
-5. Install the spaCy English language model:
-```bash
-python -m spacy download en_core_web_sm
-```
 
 ### Known Installation Issues
 
@@ -260,7 +269,3 @@ python -m spacy download en_core_web_sm
    - The project has been tested and configured for Apple Silicon
    - All binary dependencies are compatible with arm64 architecture
 
-## Initial Setup
-
-1. Clone the repository:
-```

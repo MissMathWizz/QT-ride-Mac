@@ -8,6 +8,7 @@ __pycache__/
 *$py.class
 *.so
 .Python
+env/
 build/
 develop-eggs/
 dist/
@@ -26,22 +27,28 @@ wheels/
 
 # Virtual Environment
 venv/
-ENV/
 venv_py311/
-*.pyc
-__pycache__/
-.DS_Store
+ENV/
+
+# Database
+instance/
+*.db
+*.sqlite3
 
 # IDE
-.idea/
 .vscode/
+.idea/
 *.swp
 *.swo
 
-# Database
-*.db
-instance/
-*.sqlite3
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 
 # Certificates
 *.pem

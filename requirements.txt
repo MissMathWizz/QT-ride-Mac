@@ -49,3 +49,4 @@ wasabi==1.1.2
 weasel==0.3.4
 Werkzeug==3.0.2
 zipp==3.18.1
+PyJWT==2.10.1

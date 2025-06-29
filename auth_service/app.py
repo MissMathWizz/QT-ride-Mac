@@ -9,7 +9,7 @@ from database import db
 from models import User
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///instance/auth_service.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/yw/QT-ride-Mac-test2/QT-ride-Mac/auth_service/instance/auth_service.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'auth_service_secret_key'  # used by Flask internally
 JWT_SECRET = 'your_secret'  # <-- used for signing JWT
