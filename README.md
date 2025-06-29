@@ -15,33 +15,65 @@ A microservices-based ride-sharing application specifically adapted and tested f
 - **User Profile Service**: Manages user profiles
 
 ## Mac-Specific Setup
-
-1. Create a Python virtual environment (requires Python 3.11+):
+1. Clone the repository:
 ```bash
-python3.11 -m venv venv
+git clone https://github.com/MissMathWizz/QT-ride-Mac.git
+cd QT-ride-Mac
+```
+
+2. Create and activate a virtual environment:
+```bash
+python3 -m venv venv
 source venv/bin/activate
 ```
 
-2. Install dependencies for each service:
+3. Install dependencies:
 ```bash
-cd auth_service
-pip install Flask==3.0.2 Flask-SQLAlchemy==3.1.1 Flask-Migrate==4.0.7 PyJWT==2.8.0
+pip install -r requirements.txt
 ```
 
-3. Run the services:
+## Running the Application
+
+The application consists of multiple microservices that need to run simultaneously. You'll need to open separate terminal windows/tabs for each service.
+
+### Terminal 1: Authentication Service
 ```bash
-# Auth Service
 cd auth_service
-python3 app.py
-
-# Search Service
-cd ../search_service
-python3 app.py
-
-# Offer Service
-cd ../offer_service
+source ../venv/bin/activate
 python3 app.py
 ```
+This service will run on http://127.0.0.1:5001
+
+### Terminal 2: Search Service
+```bash
+cd search_service
+source ../venv/bin/activate
+python3 app.py
+```
+This service will run on http://127.0.0.1:5003
+
+### Terminal 3: Offer Service
+```bash
+cd offer_service
+source ../venv/bin/activate
+python3 app.py
+```
+
+### Terminal 4: User Profile
+```bash
+cd user_profile
+source ../venv/bin/activate
+python3 app.py
+```
+This service will run on http://127.0.0.1:5004
+
+### Terminal 5: Main Application
+```bash
+# Make sure you're in the project root directory
+source venv/bin/activate
+python3 app.py
+```
+The main application will run on http://127.0.0.1:5002
 
 ## API Endpoints
 
@@ -165,3 +197,98 @@ N-tier microservices arcitecture
       ------------            --------------         ----------
       |   DB     |            |     DB     |         |    DB   |
       ------------            -------------          ----------
+
+# QT-ride-Mac
+
+A ride-sharing application built with Flask microservices architecture.
+
+## Prerequisites
+
+- Python 3.11 or higher
+- macOS (tested on macOS 24.5.0)
+- Terminal access
+
+## Initial Setup
+
+1. Clone the repository:
+```bash
+git clone https://github.com/MissMathWizz/QT-ride-Mac.git
+cd QT-ride-Mac
+```
+
+2. Create and activate a virtual environment:
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+3. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+## Running the Application
+
+The application consists of multiple microservices that need to run simultaneously. You'll need to open separate terminal windows/tabs for each service.
+
+### Terminal 1: Authentication Service
+```bash
+cd auth_service
+source ../venv/bin/activate
+python3 app.py
+```
+This service will run on http://127.0.0.1:5001
+
+### Terminal 2: Search Service
+```bash
+cd search_service
+source ../venv/bin/activate
+python3 app.py
+```
+This service will run on http://127.0.0.1:5003
+
+### Terminal 3: Offer Service
+```bash
+cd offer_service
+source ../venv/bin/activate
+python3 app.py
+```
+This service will run on http://127.0.0.1:5004
+
+### Terminal 4: Main Application
+```bash
+# Make sure you're in the project root directory
+source venv/bin/activate
+python3 app.py
+```
+The main application will run on http://127.0.0.1:5002
+
+## Service Endpoints
+
+- Main Application: http://127.0.0.1:5002
+- Authentication Service: http://127.0.0.1:5001
+- Search Service: http://127.0.0.1:5003
+- Offer Service: http://127.0.0.1:5004
+
+## Important Notes
+
+1. Make sure to run the services in separate terminal windows/tabs
+2. Keep all services running simultaneously for the application to work properly
+3. The virtual environment needs to be activated in each terminal
+4. The services use a shared SQLite database located in the shared_instance directory
+
+## Troubleshooting
+
+If you encounter any issues:
+
+1. Ensure all required ports (5001-5004) are available
+2. Check if the virtual environment is activated (you should see `(venv)` in your terminal prompt)
+3. Verify that all dependencies are installed correctly
+4. Make sure the shared_instance directory exists and has proper permissions
+
+## Development
+
+- The application uses SQLite for data storage
+- Each service operates independently with its own database connection
+- JWT is used for authentication
+- The frontend is served by the main application
