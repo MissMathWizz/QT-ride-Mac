@@ -62,3 +62,6 @@ Thumbs.db
 # Migrations
 migrations/versions/__pycache__/
 migrations/__pycache__/
+
+mcp_service/__pycache__/
+mcp_service/.env

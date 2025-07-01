@@ -1,11 +1,51 @@
 [![Python CI](https://github.com/ramilevi1/QT-ride/actions/workflows/python-app.yml/badge.svg)](https://github.com/ramilevi1/QT-ride/actions/workflows/python-app.yml)
 
-test 2
 # QT-ride Mac Version (Testing)
 
 A microservices-based ride-sharing application specifically adapted and tested for macOS. This version is currently under development and testing.
 
 ⚠️ **Note: This is a testing version, not ready for production use.**
+
+## 🤖 ChatGPT Integration - QT-Ride Assistant
+
+**Try it now:** [QT-Ride Assistant](https://chatgpt.com/g/g-686337c5363081919874ee9e3bcea5c5-qt-ride-assistant)
+
+We've integrated QT-Ride with ChatGPT! You can now book rides, search for transportation, and manage your account using natural language through our Custom GPT.
+
+### 🚀 How to Use the QT-Ride Assistant
+
+1. **Access the Assistant**: Click the link above to open the QT-Ride Assistant in ChatGPT
+2. **Sign Up**: Start by saying "Sign me up with email [your-email] and password [your-password]"
+3. **Log In**: Then say "Log me in with [your-email] and [your-password]"
+4. **Search for Rides**: Ask "Find me a ride from [origin] to [destination] on [date]"
+5. **Book a Ride**: Say "Book a ride for me" after searching
+6. **Check Profile**: Ask "Show me my profile"
+
+### 💬 Example Conversations
+
+```
+You: "Sign me up with email john@example.com and password mypassword123"
+Assistant: ✅ Account created successfully! You can now log in.
+
+You: "Log me in with john@example.com and mypassword123"  
+Assistant: ✅ Welcome! You are now logged in. You can search for rides and make bookings.
+
+You: "Find me a ride from San Francisco to Los Angeles on July 15th"
+Assistant: 🚗 Found available rides from San Francisco to Los Angeles on July 15th...
+
+You: "Book a ride for me"
+Assistant: ✅ Ride booked successfully! Your booking ID is DEMO-12345678
+```
+
+### 🔧 Technical Details
+
+The ChatGPT integration uses:
+- **FastAPI MCP Wrapper**: Acts as an API gateway for all microservices
+- **Ngrok Tunnel**: Provides secure HTTPS access for ChatGPT
+- **OpenAPI Schema**: Enables ChatGPT to understand available actions
+- **Session Management**: Maintains user authentication across requests
+
+For developers: See `mcp_service/` directory for the integration code and `MCP_INTEGRATION.md` for detailed setup instructions.
 
 ## Services
 
@@ -143,6 +183,8 @@ The main application will run on http://127.0.0.1:5002
 ## Testing Status
 - ✅ Basic setup tested on macOS
 - ✅ Authentication service functional
+- ✅ ChatGPT integration fully working
+- ✅ MCP wrapper service operational
 - ⚠️ Search service under testing
 - ⚠️ Offer service under testing
 - 🔄 Integration testing in progress
@@ -178,6 +220,12 @@ Carpooliong. features included:
 9. SQlite3
 10. Playwright basic e2e tests
 11. unit tests 
+
+Completed:
+- ✅ ChatGPT integration with Custom GPT Actions
+- ✅ MCP wrapper service (API Gateway)
+- ✅ OpenAPI schema for ChatGPT integration
+- ✅ Privacy policy for public GPT sharing
 
 Next to do:
 1. containerize (p1)
@@ -268,4 +316,25 @@ A ride-sharing application built with Flask microservices architecture.
 2. For M1/M2 Mac users:
    - The project has been tested and configured for Apple Silicon
    - All binary dependencies are compatible with arm64 architecture
+
+## MCP Wrapper Service (API Gateway)
+
+A FastAPI-based gateway that exposes unified endpoints for login, search, and booking rides. It forwards requests to the appropriate microservices.
+
+### How to Run
+
+1. Activate your virtual environment:
+   ```bash
+   source venv/bin/activate
+   ```
+2. Start the MCP wrapper:
+   ```bash
+   cd mcp_service
+   uvicorn app:app --reload --port 5010
+   ```
+
+### Endpoints
+- `POST /login` → Authenticates user (proxies to auth_service)
+- `GET /search` → Searches for rides (proxies to search_service)
+- `POST /book` → Books a ride (proxies to offer_service)
 

@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "QT-Ride MCP",
+  "name_for_model": "qt_ride_mcp",
+  "description_for_human": "Book, search, and manage rides via QT-Ride.",
+  "description_for_model": "Unified API for ride booking, searching, and user management in QT-Ride.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "http://localhost:5010/openapi.yaml"
+  },
+  "logo_url": "http://localhost:5010/logo.png",
+  "contact_email": "support@qt-ride.com",
+  "legal_info_url": "http://localhost:5010/legal"
+} 

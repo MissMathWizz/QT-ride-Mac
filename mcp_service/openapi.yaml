@@ -1,0 +1,90 @@
+openapi: 3.0.1
+info:
+  title: QT-Ride MCP Wrapper
+  description: API Gateway for QT-Ride microservices
+  version: '1.0.0'
+servers:
+  - url: https://20f9-2806-107e-1b-2f9f-f570-9027-65d8-929e.ngrok-free.app
+paths:
+  /login:
+    post:
+      summary: User login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Login response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  access_token:
+                    type: string
+  /search:
+    get:
+      summary: Search for rides
+      parameters:
+        - in: query
+          name: from
+          schema:
+            type: string
+        - in: query
+          name: to
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                type: object
+  /book:
+    post:
+      summary: Book a ride
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ride_id:
+                  type: integer
+                user_id:
+                  type: integer
+      responses:
+        '200':
+          description: Booking response
+          content:
+            application/json:
+              schema:
+                type: object
+  /profile/{user_id}:
+    get:
+      summary: Get user profile
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User profile
+          content:
+            application/json:
+              schema:
+                type: object 
